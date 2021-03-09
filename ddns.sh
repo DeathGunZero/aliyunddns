@@ -11,14 +11,14 @@ function ddns(){
 		exit 1
 	elif [ -z $remote_dn_ip ] || [ $remote_dn_ip = null ]
 	then
-		exec echo -e $(date)"\n"$(aliyun alidns AddDomainRecord --DomainName $user_dn --RR $user_rr --Type A --Value $local_ip --Line default) >> ./aliyunddns.logs
+		exec echo -e $(date)"\n"$(aliyun alidns AddDomainRecord --DomainName $user_dn --RR $user_rr --Type A --Value $local_ip --Line default) >> /var/log/aliyunddns.logs
 		exit 0
 	elif [ $remote_dn_ip = $local_ip ]
 	then
-		echo -e $(date)"\n解析IP无需改变" >> ./aliyunddns.logs
+		echo -e $(date)"\n解析IP无需改变" >> /var/log/aliyunddns.logs
 		exit 0
 	else
-		exec echo -e $(date)"\n"$(aliyun alidns UpdateDomainRecord --RecordId $remote_dn_recordid --RR $user_rr --Type A --Value $local_ip --Line default) >> ./aliyunddns.logs
+		exec echo -e $(date)"\n"$(aliyun alidns UpdateDomainRecord --RecordId $remote_dn_recordid --RR $user_rr --Type A --Value $local_ip --Line default) >> /var/log/aliyunddns.logs
 		exit 0
 		
 	fi
