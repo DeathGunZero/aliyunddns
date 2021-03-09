@@ -17,11 +17,11 @@ sudo mv ddns.sh /bin/ddns
 使用 ddns -h 或 ddns -help 可以获得参数帮助  
 使用 ddns --rr={您的域名RR值} --dn={您的主域名}  
 ```
-'''
+```
 范例:  
 ddns --rr=test --dn=example.com
 运行上述命令将自动添加解析，将test.example.com解析到您的本机公网IP地址
-'''
+```
 ```
 日志：  
 运行日志: ~/aliyunddns.logs
