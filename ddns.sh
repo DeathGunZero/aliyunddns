@@ -24,10 +24,31 @@ function ddns(){
 	fi
 }
 
-if [ -z $1 ] || [ -z $2 ]
+COMMANDLINE="$*"
+for COMMAND in $COMMANDLINE
+do
+	key=$(echo $COMMAND | awk -F"=" '{print $1}')
+	val=$(echo $COMMAND | awk -F"=" '{print $2}')
+	case $key in
+		--rr)
+			rr=$val
+		;;
+		--dn)
+			dn=$val
+		;;
+		-help|-h)
+			echo -e "--rr={your RR record}\n--dn={your domainname}"
+			exit 0
+		;;
+	esac
+done
+
+
+if [ -z $rr ] || [ -z $dn ]
 then
-	echo "缺少输入"
+	echo "缺少输入或非法输入"
+	echo "请运行./ddns.sh -h 查阅"
 	exit 1
 else
-	ddns $1 $2
-fi
+	ddns $rr $dn
+fi 
