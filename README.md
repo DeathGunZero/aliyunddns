@@ -24,5 +24,5 @@ ddns --rr=test --dn=example.com
 '''
 ```
 日志：  
-运行日志: /var/log/aliyunddns.logs  
+运行日志: ~/aliyunddns.logs
 ```
